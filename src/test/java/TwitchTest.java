@@ -1,9 +1,12 @@
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,6 +35,7 @@ public class TwitchTest {
 		driver.quit();
 	}
 	
+	@Ignore
 	@Test
 	public void signupTest() throws InterruptedException {
 		driver.get("https://temp-mail.org/");
@@ -94,8 +98,20 @@ public class TwitchTest {
 		homePage.getSignupButton().click();
 		driver.switchTo().window(tabs.get(0));
 		Thread.sleep(20000);
+		}
+	
+	@Test
+	public void loginTest() {
+		String user = "testuser3321", pass = "Testpass3321";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.get("https://twitch.tv/login");
 		
+		Login loginPage = PageFactory.initElements(driver, Login.class);
 		
-		
+		loginPage.getUsername().sendKeys(user);
+		loginPage.getPassword().sendKeys(pass);
+		loginPage.getPassword().submit();
+		assertEquals(user,loginPage.getLoggedUser().getText());
 	}
 }

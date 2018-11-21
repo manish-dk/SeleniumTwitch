@@ -24,7 +24,7 @@ public class TwitchTest {
 //	WebDriverWait wait = new WebDriverWait(driver, 10);
 	@Before
 	public void setup() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\manis\\Desktop\\eclipse\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/home/travis/virtualenv/chromedriver.exe");
 		driver = new ChromeDriver();
 		
 	}
